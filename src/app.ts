@@ -3,11 +3,10 @@ import dotenv from 'dotenv'
 import routes from './routes';
 import helmet from 'helmet'
 import connectDB from './utils/connect';
+import logger from './utils/logger';
 
 // import environment variable form .env file
 dotenv.config()
-
-connectDB()
 
 // '+' and '!' is used to convert PORT to number type
 const PORT: number = +process.env.PORT!
@@ -45,6 +44,10 @@ app.get('/error', async (req, res) => {
 })
 
 
-app.listen(PORT, () => {
-  console.log(`Application listening at http://localhost:${PORT}`);
+app.listen(PORT, async () => {
+  logger.info(
+    `Application listening at http://localhost:${PORT}`
+  );
+
+  await connectDB()
 });

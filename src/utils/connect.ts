@@ -1,12 +1,17 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { cyan } from 'colors';
+import logger from './logger';
 dotenv.config();
 
 const connectDB = async () => {
-  const conn = await mongoose.connect(process.env.MONGO_URI!);
+  try {
+    const conn = await mongoose.connect(process.env.MONGO_URI!);
+    logger.info(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    logger.error("Could not connect to database")
+    process.exit(1)
+  }
 
-  console.log(`MongoDB Connected: ${conn.connection.host}`.cyan);
 };
 
 export default connectDB;
