@@ -36,11 +36,11 @@ export class User {
   @prop({ required: true, default: () => nanoid })
   verificationCode: string;
 
-  @prop({ required: true })
-  passwordResetCode: string | null;
+  // @prop({ required: true })
+  // passwordResetCode: string | null;
 
-  @prop({ required: true })
-  verified: boolean;
+  // @prop({ required: true })
+  // verified: boolean;
 
   async validatePassword(this: DocumentType<User>, candidatePassword: string){
     try {

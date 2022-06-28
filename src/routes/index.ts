@@ -1,9 +1,15 @@
-import express from 'express'
-import user from './user.routes'
+import express from 'express';
+import user from './user.routes';
 
-const router = express.Router()
+const router = express.Router();
+router.get('/', (req, res) => {
+  res.sendStatus(200)
+})
 
-router.get('/healthcheck', (_, res) => { res.sendStatus(200) })
-router.use(user)
+router.get('/healthcheck', (_, res) => {
+  res.sendStatus(200);
+});
 
-export default router
+router.use(user);
+
+export default router;
